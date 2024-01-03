@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A2A42712B45A6FE009298A0 /* LastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2A42702B45A6FE009298A0 /* LastViewController.swift */; };
 		7A5734D12B4068D400626245 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5734D02B4068D400626245 /* AppDelegate.swift */; };
 		7A5734D32B4068D400626245 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5734D22B4068D400626245 /* SceneDelegate.swift */; };
 		7A5734D52B4068D400626245 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5734D42B4068D400626245 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		5B66948C631BFD81DFA68D09 /* Pods-AboutMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AboutMe.release.xcconfig"; path = "Target Support Files/Pods-AboutMe/Pods-AboutMe.release.xcconfig"; sourceTree = "<group>"; };
 		737ECD8292DCACD026386620 /* Pods_AboutMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AboutMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A2A42702B45A6FE009298A0 /* LastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewController.swift; sourceTree = "<group>"; };
 		7A5734CD2B4068D400626245 /* AboutMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AboutMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A5734D02B4068D400626245 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A5734D22B4068D400626245 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			children = (
 				7A5734D02B4068D400626245 /* AppDelegate.swift */,
 				7A5734D22B4068D400626245 /* SceneDelegate.swift */,
+				7A2A42702B45A6FE009298A0 /* LastViewController.swift */,
 				7A5735062B41CDF000626245 /* ThirdViewController.swift */,
 				7A5734D42B4068D400626245 /* ViewController.swift */,
 				7A5735042B40AA9000626245 /* SecondViewController.swift */,
@@ -216,6 +219,7 @@
 				7A5734D52B4068D400626245 /* ViewController.swift in Sources */,
 				7A5735072B41CDF000626245 /* ThirdViewController.swift in Sources */,
 				7A5734D12B4068D400626245 /* AppDelegate.swift in Sources */,
+				7A2A42712B45A6FE009298A0 /* LastViewController.swift in Sources */,
 				7A5734D32B4068D400626245 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

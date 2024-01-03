@@ -44,14 +44,6 @@ class SecondViewController: UIViewController {
             make.right.equalTo(-20)
         }
         
-        nextScreenButton.translatesAutoresizingMaskIntoConstraints = false
-        nextScreenButton.snp.makeConstraints { make in
-            make.top.equalTo(bitrhChat.snp_bottomMargin).offset(30)
-            make.width.equalTo(100)
-            make.centerX.equalTo(view)
-            make.bottom.equalTo(-20)
-        }
-        
         bitrhChat.translatesAutoresizingMaskIntoConstraints = false
         bitrhChat.snp.makeConstraints { make in
             make.centerX.equalTo(view)
@@ -59,6 +51,14 @@ class SecondViewController: UIViewController {
             make.height.equalTo(view).multipliedBy(0.5)
             make.left.equalTo(40)
             make.right.equalTo(-40)
+        }
+        
+        nextScreenButton.translatesAutoresizingMaskIntoConstraints = false
+        nextScreenButton.snp.makeConstraints { make in
+            make.top.equalTo(bitrhChat.snp_bottomMargin).offset(40)
+            make.width.equalTo(100)
+            make.centerX.equalTo(view)
+            make.bottom.equalTo(-20)
         }
     }
     
