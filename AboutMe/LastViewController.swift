@@ -8,16 +8,16 @@ class LastViewController: UIViewController {
 
         view.backgroundColor = #colorLiteral(red: 0.3027401567, green: 0.6057469845, blue: 1, alpha: 1)
 
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fill
-        stackView.spacing = 10
+        let catInfo = UIStackView()
+        catInfo.axis = .horizontal
+        catInfo.distribution = .fill
+        catInfo.spacing = 10
 
-        let catStack = UIStackView()
-        catStack.axis = .vertical
-        catStack.alignment = .center
-        catStack.distribution = .fillEqually
-        catStack.spacing = 2
+        let catPhotoStack = UIStackView()
+        catPhotoStack.axis = .vertical
+        catPhotoStack.alignment = .center
+        catPhotoStack.distribution = .fillEqually
+        catPhotoStack.spacing = 2
 
         let aboutCat = UILabel()
         aboutCat.text = "А еще у меня есть кот, его зовут Рамзи. Он любит заполнять товарно-транспортные накладные, есть бумажки и грызться"
@@ -36,24 +36,24 @@ class LastViewController: UIViewController {
         let catSmoking = UIImageView(image: UIImage(named: "catSmoking"))
         catSmoking.contentMode = .scaleToFill
 
-        catStack.addArrangedSubview(catOnChair)
-        catStack.addArrangedSubview(catWorking)
-        catStack.addArrangedSubview(catSmoking)
+        catPhotoStack.addArrangedSubview(catOnChair)
+        catPhotoStack.addArrangedSubview(catWorking)
+        catPhotoStack.addArrangedSubview(catSmoking)
 
-        stackView.addArrangedSubview(catStack)
-        stackView.addArrangedSubview(aboutCat)
+        catInfo.addArrangedSubview(catPhotoStack)
+        catInfo.addArrangedSubview(aboutCat)
 
-        view.addSubview(stackView)
+        view.addSubview(catInfo)
 
-        stackView.snp.makeConstraints { make in
+        catInfo.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             make.bottom.equalTo(-60)
             make.left.equalTo(20)
             make.right.equalTo(-20)
         }
 
-        catStack.snp.makeConstraints { make in
-            make.width.equalTo(stackView.snp.width).multipliedBy(0.6)
+        catPhotoStack.snp.makeConstraints { make in
+            make.width.equalTo(catInfo.snp.width).multipliedBy(0.6)
         }
     }
 }
