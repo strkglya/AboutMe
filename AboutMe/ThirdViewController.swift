@@ -49,7 +49,6 @@ class ThirdViewController: UIViewController {
             make.top.equalTo(myPhoto.snp_bottomMargin).offset(40)
             make.left.equalTo(20)
             make.right.equalTo(-20)
-           // make.bottom.equalTo(nextScreenButton.snp_topMargin).offset(-20)
         }
         
         nextScreenButton.translatesAutoresizingMaskIntoConstraints = false

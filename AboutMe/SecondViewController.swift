@@ -55,7 +55,7 @@ class SecondViewController: UIViewController {
         
         nextScreenButton.translatesAutoresizingMaskIntoConstraints = false
         nextScreenButton.snp.makeConstraints { make in
-            make.top.equalTo(bitrhChat.snp_bottomMargin).offset(40)
+            make.top.greaterThanOrEqualTo(bitrhChat.snp_bottomMargin).offset(20)
             make.width.equalTo(100)
             make.centerX.equalTo(view)
             make.bottom.equalTo(-20)

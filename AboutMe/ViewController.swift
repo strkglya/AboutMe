@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         
         nextScreenButton.translatesAutoresizingMaskIntoConstraints = false
         nextScreenButton.snp.makeConstraints { make in
-            make.bottom.equalTo(-40)
+            make.bottom.equalTo(-20)
             make.width.equalTo(100)
             make.centerX.equalTo(view)
         }
