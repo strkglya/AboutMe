@@ -1,9 +1,3 @@
-//
-//  ThirdViewController.swift
-//  AboutMe
-//
-//  Created by Александра Среднева on 31.12.23.
-//
 
 import UIKit
 import SnapKit
