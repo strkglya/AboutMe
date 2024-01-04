@@ -1,9 +1,3 @@
-//
-//  SecondViewController.swift
-//  AboutMe
-//
-//  Created by Александра Среднева on 30.12.23.
-//
 
 import UIKit
 import SnapKit
