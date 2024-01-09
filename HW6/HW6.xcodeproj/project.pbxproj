@@ -13,6 +13,8 @@
 		7AB32FCD2B4C7D09007AE80C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB32FCB2B4C7D09007AE80C /* Main.storyboard */; };
 		7AB32FCF2B4C7D0B007AE80C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AB32FCE2B4C7D0B007AE80C /* Assets.xcassets */; };
 		7AB32FD22B4C7D0B007AE80C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB32FD02B4C7D0B007AE80C /* LaunchScreen.storyboard */; };
+		7AEA07EC2B4C9A2C003C9C11 /* GenderScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AEA07EB2B4C9A2C003C9C11 /* GenderScreen.storyboard */; };
+		7AEA07EE2B4C9A3E003C9C11 /* GenderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AEA07ED2B4C9A3E003C9C11 /* GenderController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		7AB32FCE2B4C7D0B007AE80C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AB32FD12B4C7D0B007AE80C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7AB32FD32B4C7D0B007AE80C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AEA07EB2B4C9A2C003C9C11 /* GenderScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GenderScreen.storyboard; sourceTree = "<group>"; };
+		7AEA07ED2B4C9A3E003C9C11 /* GenderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				7AB32FC52B4C7D09007AE80C /* AppDelegate.swift */,
 				7AB32FC72B4C7D09007AE80C /* SceneDelegate.swift */,
 				7AB32FC92B4C7D09007AE80C /* ViewController.swift */,
+				7AEA07EB2B4C9A2C003C9C11 /* GenderScreen.storyboard */,
+				7AEA07ED2B4C9A3E003C9C11 /* GenderController.swift */,
 				7AB32FCB2B4C7D09007AE80C /* Main.storyboard */,
 				7AB32FCE2B4C7D0B007AE80C /* Assets.xcassets */,
 				7AB32FD02B4C7D0B007AE80C /* LaunchScreen.storyboard */,
@@ -128,6 +134,7 @@
 				7AB32FD22B4C7D0B007AE80C /* LaunchScreen.storyboard in Resources */,
 				7AB32FCF2B4C7D0B007AE80C /* Assets.xcassets in Resources */,
 				7AB32FCD2B4C7D09007AE80C /* Main.storyboard in Resources */,
+				7AEA07EC2B4C9A2C003C9C11 /* GenderScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +147,7 @@
 			files = (
 				7AB32FCA2B4C7D09007AE80C /* ViewController.swift in Sources */,
 				7AB32FC62B4C7D09007AE80C /* AppDelegate.swift in Sources */,
+				7AEA07EE2B4C9A3E003C9C11 /* GenderController.swift in Sources */,
 				7AB32FC82B4C7D09007AE80C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
