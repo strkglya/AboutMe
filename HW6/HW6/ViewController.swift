@@ -49,10 +49,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func customizeAction(_ sender: Any) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let secondVC = mainStoryboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {return}
-        secondVC.isNewScreen = true
-        present(secondVC, animated: true)
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "ViewController") as? ViewController else {return}
+        vc.isNewScreen = true
+        guard let navController = navigationController else {return}
+        navController.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func saveAction(_ sender: Any) {
+        print("save")
+    }
+    
+    @IBAction func editAction(_ sender: Any) {
+    }
+    
+    @IBAction func cancelAction(_ sender: Any) {
+        dismiss(animated: true)
     }
 }
 
