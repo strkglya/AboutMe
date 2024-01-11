@@ -4,13 +4,13 @@ import SnapKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var placeholder: UILabel!
-    @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var customizeButton: UIButton!
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    var userImage = UIImageView()
+    var placeholder = UILabel()
+    var userName = UILabel()
+    var customizeButton = UIButton()
+    var editButton = UIButton()
+    var cancelButton = UIButton()
+    var saveButton = UIButton()
 
     private var isNewScreen = false
     
