@@ -22,11 +22,20 @@ class ViewController: UIViewController {
     
     private func setUpScreen() {
         
-        userImage.layer.cornerRadius = userImage.frame.size.width/2
+        
+        
+        userImage.snp.makeConstraints { make in
+            make.width.equalTo(300)
+            make.height.equalTo(300)
+            make.center.equalTo(view.center)
+        }
+        
+        //userImage.layer.cornerRadius = userImage.frame.size.width/2
         userImage.layer.masksToBounds = true
         userImage.layer.borderWidth = 2
         userImage.layer.borderColor = UIColor.purple.cgColor
         userImage.backgroundColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        userImage.translatesAutoresizingMaskIntoConstraints = false
         
         placeholder.text = "No Image"
         
@@ -34,6 +43,10 @@ class ViewController: UIViewController {
         customizeButton.layer.borderColor = UIColor.purple.cgColor
         customizeButton.layer.cornerRadius = 10
         customizeButton.setTitleColor(.purple, for: .normal)
+        
+        view.addSubview(userImage)
+        view.addSubview(placeholder)
+        view.addSubview(customizeButton)
     }
     
     private func isNew(){
