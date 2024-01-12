@@ -8,9 +8,12 @@
 import UIKit
 
 class MenuViewController: UIViewController {
+    
+    private let genderVC = GenderController()
    
     private let userImage = UIImageView()
     private let placeholder = UILabel()
+    private let userName = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let editButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let saveButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -28,7 +31,8 @@ class MenuViewController: UIViewController {
     private func setupUI() {
         setUpImage()
         setUpPlaceholder()
-        setUpButtonStack(stack: buttonsStack)
+        setUpUsername()
+        setUpButtonStack()
         setupConstraints()
     }
     
@@ -50,36 +54,50 @@ class MenuViewController: UIViewController {
         view.addSubview(placeholder)
     }
     
-    private func setUpButtonStack(stack: UIStackView) -> UIStackView {
+    private func setUpUsername(){
+        userName.text = "No Name"
+        userName.textColor = .black
+        userName.translatesAutoresizingMaskIntoConstraints = false
+        userName.font = .systemFont(ofSize: 22)
+        
+        view.addSubview(userName)
+    }
+    
+    private func setUpButtonStack()  {
         setUpSaveButton()
         setUpEditButton()
         setUpCancelButton()
-        stack.axis = .vertical
-        stack.addArrangedSubview(saveButton)
-        stack.addArrangedSubview(editButton)
-        stack.addArrangedSubview(cancelButton)
-        stack.spacing = 10
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
+        buttonsStack.axis = .vertical
+        buttonsStack.addArrangedSubview(saveButton)
+        buttonsStack.addArrangedSubview(editButton)
+        buttonsStack.addArrangedSubview(cancelButton)
+        buttonsStack.spacing = 10
+        buttonsStack.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(buttonsStack)
     }
     
     private func setUpSaveButton(){
-        configButton(button: saveButton, title: "Save", bgColor: .purple)
+        configButton(button: saveButton, title: "Save", bgColor: .purple, titleColour: .white)
     }
     
     private func setUpEditButton(){
-        configButton(button: editButton, title: "Edit", borderWidth: 2, borderColor: UIColor.purple.cgColor)
+        configButton(button: editButton, title: "Edit", borderWidth: 2, borderColor: UIColor.purple.cgColor, titleColour: .purple)
+        editButton.addTarget(self, action: #selector(goToNextScreen), for: .touchUpInside)
     }
     
     private func setUpCancelButton(){
-        configButton(button: cancelButton, title: "Cancel")
+        configButton(button: cancelButton, title: "Cancel", titleColour: .purple)
+        cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
     }
     
-    func configButton(button: UIButton, title: String, bgColor: UIColor = .white, borderWidth: CGFloat = 0, borderColor: CGColor = UIColor.white.cgColor){
+    func configButton(button: UIButton, title: String, bgColor: UIColor = .white, borderWidth: CGFloat = 0, borderColor: CGColor = UIColor.white.cgColor, titleColour: UIColor){
         button.setTitle(title, for: .normal)
+        button.setTitleColor(titleColour, for: .normal)
         button.backgroundColor = bgColor
         button.layer.borderWidth = borderWidth
         button.layer.borderColor = borderColor
+        button.layer.cornerRadius = 10
+       
         view.addSubview(button)
     }
     
@@ -94,10 +112,25 @@ class MenuViewController: UIViewController {
         placeholder.snp.makeConstraints { make in
             make.center.equalTo(userImage)
         }
-        buttonsStack.snp.makeConstraints { make in
-//            make.bottom.equalTo(view).offset(100)
-            make.left.equalTo(view.snp.left).offset(30)
-            make.right.equalTo(view.snp.right).offset(-30)
+        
+        userName.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(userImage.snp.bottom).offset(20)
         }
+
+        buttonsStack.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.width.equalTo(view.snp.width).multipliedBy(0.65)
+            make.bottom.equalTo(view).offset(-15)
+        }
+    }
+    
+    @objc private func goToNextScreen(){
+        guard let navVC = navigationController else {return}
+        navVC.pushViewController(genderVC, animated: true)
+    }
+    
+    @objc private func cancelAction(){
+        navigationController?.popViewController(animated: true)
     }
 }

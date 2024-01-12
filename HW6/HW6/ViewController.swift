@@ -24,6 +24,7 @@ class ViewController: UIViewController {
     private func setUpUI() {
         setUpImage()
         setUpPlaceholder()
+        setUpUsername()
         setUpCustomizeButton()
         setupConstraints()
     }
@@ -44,6 +45,15 @@ class ViewController: UIViewController {
         placeholder.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(placeholder)
+    }
+    
+    private func setUpUsername(){
+        userName.text = "No Name"
+        userName.textColor = .black
+        userName.translatesAutoresizingMaskIntoConstraints = false
+        userName.font = .systemFont(ofSize: 22)
+        
+        view.addSubview(userName)
     }
     
     private func setUpCustomizeButton(){
@@ -73,10 +83,15 @@ class ViewController: UIViewController {
             make.center.equalTo(userImage)
         }
         
+        userName.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.top.equalTo(userImage.snp.bottom).offset(20)
+        }
+        
         customizeButton.snp.makeConstraints { make in
             make.width.equalTo(view.snp.width).multipliedBy(0.55)
             make.centerX.equalTo(view.snp.centerX)
-            make.top.equalTo(userImage.snp.bottom).offset(30)
+            make.top.equalTo(userName.snp.bottom).offset(30)
         }
     }
     

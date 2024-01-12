@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7A77B8242B515CA2000DD6E8 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A77B8232B515CA2000DD6E8 /* MenuViewController.swift */; };
+		7A77B8262B51AD82000DD6E8 /* NicknameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A77B8252B51AD82000DD6E8 /* NicknameController.swift */; };
+		7A77B8282B51C215000DD6E8 /* AvatarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A77B8272B51C215000DD6E8 /* AvatarController.swift */; };
 		7AB32FC62B4C7D09007AE80C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB32FC52B4C7D09007AE80C /* AppDelegate.swift */; };
 		7AB32FC82B4C7D09007AE80C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB32FC72B4C7D09007AE80C /* SceneDelegate.swift */; };
 		7AB32FCA2B4C7D09007AE80C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB32FC92B4C7D09007AE80C /* ViewController.swift */; };
@@ -23,6 +25,8 @@
 		22D748406892792A16D39E51 /* Pods-HW6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW6.debug.xcconfig"; path = "Target Support Files/Pods-HW6/Pods-HW6.debug.xcconfig"; sourceTree = "<group>"; };
 		49FE8467FA3740BE10E0C10E /* Pods_HW6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A77B8232B515CA2000DD6E8 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		7A77B8252B51AD82000DD6E8 /* NicknameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameController.swift; sourceTree = "<group>"; };
+		7A77B8272B51C215000DD6E8 /* AvatarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarController.swift; sourceTree = "<group>"; };
 		7AB32FC22B4C7D09007AE80C /* HW6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB32FC52B4C7D09007AE80C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AB32FC72B4C7D09007AE80C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,8 @@
 				7AB32FC92B4C7D09007AE80C /* ViewController.swift */,
 				7AEA07EB2B4C9A2C003C9C11 /* GenderScreen.storyboard */,
 				7AEA07ED2B4C9A3E003C9C11 /* GenderController.swift */,
+				7A77B8252B51AD82000DD6E8 /* NicknameController.swift */,
+				7A77B8272B51C215000DD6E8 /* AvatarController.swift */,
 				7AB32FCB2B4C7D09007AE80C /* Main.storyboard */,
 				7AB32FCE2B4C7D0B007AE80C /* Assets.xcassets */,
 				7AB32FD02B4C7D0B007AE80C /* LaunchScreen.storyboard */,
@@ -217,7 +223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AB32FCA2B4C7D09007AE80C /* ViewController.swift in Sources */,
+				7A77B8262B51AD82000DD6E8 /* NicknameController.swift in Sources */,
 				7A77B8242B515CA2000DD6E8 /* MenuViewController.swift in Sources */,
+				7A77B8282B51C215000DD6E8 /* AvatarController.swift in Sources */,
 				7AB32FC62B4C7D09007AE80C /* AppDelegate.swift in Sources */,
 				7AEA07EE2B4C9A3E003C9C11 /* GenderController.swift in Sources */,
 				7AB32FC82B4C7D09007AE80C /* SceneDelegate.swift in Sources */,
