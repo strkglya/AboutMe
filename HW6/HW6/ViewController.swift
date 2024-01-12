@@ -4,25 +4,24 @@ import SnapKit
 
 class ViewController: UIViewController {
     
+    private let menuVC = MenuViewController()
+    
     private let userImage = UIImageView()
     private let placeholder = UILabel()
     private let userName = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let customizeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-    private let editButton = UIButton()
-    private let cancelButton = UIButton()
-    private let saveButton = UIButton()
-    
-    private var isNewScreen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupUI()
-        
-        //setUpScreen()
-        //isNew()
+        setUpUI()
     }
-    private func setupUI() {
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        userImage.layer.cornerRadius = userImage.frame.height / 2
+    }
+    
+    private func setUpUI() {
         setUpImage()
         setUpPlaceholder()
         setUpCustomizeButton()
@@ -82,13 +81,8 @@ class ViewController: UIViewController {
     }
     
     @objc private func goToNextScreen(){
-        let menuVC = MenuViewController()
         guard let navVC = navigationController else {return}
         navVC.pushViewController(menuVC, animated: true)
-    }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        userImage.layer.cornerRadius = userImage.frame.height / 2
     }
 }
 
