@@ -91,6 +91,7 @@ class NicknameController: UIViewController {
        
         view.addSubview(button)
     }
+    
     private func setUpConstraints(){
         instructions.snp.makeConstraints { make in
             make.left.equalTo(nicknameStack.snp.left)
