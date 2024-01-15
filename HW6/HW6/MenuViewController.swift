@@ -7,11 +7,21 @@
 
 import UIKit
 
+//struct probaData {
+//    let image: UIImageView?
+//    let label: UILabel?
+//    let gender: String?
+//}
+
+
+
 class MenuViewController: UIViewController {
     
+    weak var delegate: ViewController?
     private let genderVC = GenderController()
    
     private let userImage = UIImageView()
+    private var userGender = String()
     private let placeholder = UILabel()
     private let userName = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let editButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -127,10 +137,32 @@ class MenuViewController: UIViewController {
     
     @objc private func goToNextScreen(){
         guard let navVC = navigationController else {return}
+        genderVC.delegate = self
         navVC.pushViewController(genderVC, animated: true)
     }
     
     @objc private func cancelAction(){
         navigationController?.popViewController(animated: true)
     }
+}
+
+extension MenuViewController: SentData {
+
+    func didEnterLabel(label: String) {
+        userName.text = label
+    }
+    
+    func didSelectImage(image: UIImage) {
+        userImage.image = image
+    }
+    
+//    func sendData(data: [String]) {
+//        userImage.image = UIImage(named: data[0])
+//        userName.text = data[1]
+//    }
+    
+//    func sendStruct(data: probaData) {
+//        userImage.image = data.image?.image
+//        userName.text = data.label?.text
+//    }
 }

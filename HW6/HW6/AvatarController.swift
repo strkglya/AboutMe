@@ -8,7 +8,9 @@
 import UIKit
 
 class AvatarController: UIViewController {
-
+    
+    weak var delegate : SentData?
+    
     private let instructions = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let bug = UIImageView()
     private let human = UIImageView()
@@ -18,6 +20,8 @@ class AvatarController: UIViewController {
     private let firstRowStack = UIStackView()
     private let secondRowStack = UIStackView()
     private let avatarStack = UIStackView()
+    
+    private var imageName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,26 +44,33 @@ class AvatarController: UIViewController {
     
     private func setUpBug(){
         bug.image = UIImage(named: "bug")
+        bug.accessibilityIdentifier = "bug"
+        configureGestureRecognizer(for: bug)
+
         view.addSubview(bug)
     }
     
     private func setUpHuman(){
         human.image = UIImage(named: "human")
+        human.accessibilityIdentifier = "human"
+        configureGestureRecognizer(for: human)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToNextScreen))
-        tapGesture.numberOfTapsRequired = 1
-        human.isUserInteractionEnabled = true
-        human.addGestureRecognizer(tapGesture)
         view.addSubview(human)
     }
     
     private func setUpCrown(){
         crown.image = UIImage(named: "crown")
+        crown.accessibilityIdentifier = "crown"
+        configureGestureRecognizer(for: crown)
+        
         view.addSubview(crown)
     }
     
     private func setUpStar(){
         star.image = UIImage(named: "star")
+        star.accessibilityIdentifier = "star"
+        configureGestureRecognizer(for: star)
+        
         view.addSubview(star)
     }
     
@@ -87,6 +98,13 @@ class AvatarController: UIViewController {
         view.addSubview(avatarStack)
     }
     
+    private func configureGestureRecognizer(for image: UIImageView){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(goToNextScreen))
+        tapGesture.numberOfTapsRequired = 1
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(tapGesture)
+    }
+
     private func setUpConstraints(){
         instructions.snp.makeConstraints { make in
             make.left.equalTo(avatarStack.snp.left).offset(15)
@@ -100,9 +118,16 @@ class AvatarController: UIViewController {
         }
     }
     
-    @objc private func goToNextScreen(){
-        guard let menuVC = navigationController?.viewControllers[1] else {return}
-        guard let navVC = navigationController else {return}
-        navVC.popToViewController(menuVC, animated: true)
+    @objc private func goToNextScreen(sender: UITapGestureRecognizer){
+        if let chosenImage = sender.view as? UIImageView {
+            if let chosenImageID = chosenImage.accessibilityIdentifier {
+                if let imageToSend = UIImage(named: chosenImageID){
+                    guard let menuVC = navigationController?.viewControllers[1] else {return}
+                    guard let navVC = navigationController else {return}
+                    delegate?.didSelectImage(image: imageToSend)
+                    navVC.popToViewController(menuVC, animated: true)
+                }
+            }
+        }
     }
 }

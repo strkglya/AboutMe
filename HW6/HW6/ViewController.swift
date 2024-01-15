@@ -2,6 +2,11 @@
 import UIKit
 import SnapKit
 
+protocol SentData: AnyObject {
+    func didEnterLabel(label: String)
+    func didSelectImage(image: UIImage)
+}
+
 class ViewController: UIViewController {
     
     private let menuVC = MenuViewController()
@@ -97,6 +102,7 @@ class ViewController: UIViewController {
     
     @objc private func goToNextScreen(){
         guard let navVC = navigationController else {return}
+        menuVC.delegate = self
         navVC.pushViewController(menuVC, animated: true)
     }
 }

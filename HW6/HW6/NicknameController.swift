@@ -9,6 +9,8 @@ import UIKit
 
 class NicknameController: UIViewController {
     
+    weak var delegate : SentData?
+    
     private let avatarVC = AvatarController()
     
     private let instructions = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -18,7 +20,7 @@ class NicknameController: UIViewController {
     private let gun = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
 
     private let nicknameStack = UIStackView()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
@@ -41,28 +43,24 @@ class NicknameController: UIViewController {
     private func setUpFrog(){
         configButton(button: frog, title: "Frog")
         frog.addTarget(self, action: #selector(goToNextScreen), for: .touchUpInside)
-       
         view.addSubview(frog)
     }
     
     private func setUpHammer(){
         configButton(button: hammer, title: "Hammer")
         hammer.addTarget(self, action: #selector(goToNextScreen), for: .touchUpInside)
-       
         view.addSubview(hammer)
     }
     
     private func setUpKing(){
         configButton(button: king, title: "King")
         king.addTarget(self, action: #selector(goToNextScreen), for: .touchUpInside)
-       
         view.addSubview(king)
     }
     
     private func setUpGun(){
         configButton(button: gun, title: "Gun")
         gun.addTarget(self, action: #selector(goToNextScreen), for: .touchUpInside)
-       
         view.addSubview(gun)
     }
     
@@ -105,10 +103,15 @@ class NicknameController: UIViewController {
         }
     }
     
-    @objc private func goToNextScreen(){
+    @objc private func goToNextScreen(from button: UIButton){
         guard let navVC = navigationController else {return}
+        avatarVC.delegate = delegate
+        delegate?.didEnterLabel(label: passNickname(button: button))
         navVC.pushViewController(avatarVC, animated: true)
     }
+    
+    @objc private func passNickname(button: UIButton) -> String {
+        guard let buttonTitle = button.titleLabel?.text else {return ""}
+        return buttonTitle
+    }
 }
-
-
