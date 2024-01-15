@@ -1,23 +1,11 @@
-//
-//  MenuViewController.swift
-//  HW6
-//
-//  Created by Александра Среднева on 12.01.24.
-//
 
 import UIKit
 
-//struct probaData {
-//    let image: UIImageView?
-//    let label: UILabel?
-//    let gender: String?
-//}
-
-
-
-class MenuViewController: UIViewController {
+final class MenuViewController: UIViewController {
     
-    weak var delegate: ViewController?
+    var viewController: ViewController?
+    
+    weak var delegate: SentData?
     private let genderVC = GenderController()
    
     private let userImage = UIImageView()
@@ -28,6 +16,7 @@ class MenuViewController: UIViewController {
     private let cancelButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let saveButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let buttonsStack = UIStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -36,6 +25,14 @@ class MenuViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         userImage.layer.cornerRadius = userImage.frame.height / 2
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if userImage.image != nil {
+            placeholder.isHidden = true
+        } else {
+            placeholder.isHidden = false
+        }
     }
     
     private func setupUI() {
@@ -88,6 +85,7 @@ class MenuViewController: UIViewController {
     
     private func setUpSaveButton(){
         configButton(button: saveButton, title: "Save", bgColor: .purple, titleColour: .white)
+        saveButton.addTarget(self, action: #selector(saveAction), for: .touchUpInside)
     }
     
     private func setUpEditButton(){
@@ -135,6 +133,12 @@ class MenuViewController: UIViewController {
         }
     }
     
+    @objc private func saveAction(){
+        delegate?.didEnterLabel(label: userName.text ?? "")
+        delegate?.didSelectImage(image: userImage.image ?? UIImage())
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc private func goToNextScreen(){
         guard let navVC = navigationController else {return}
         genderVC.delegate = self
@@ -142,6 +146,10 @@ class MenuViewController: UIViewController {
     }
     
     @objc private func cancelAction(){
+        if let viewController = viewController {
+            userName.text = viewController.userName.text
+            userImage.image = viewController.userImage.image
+        }
         navigationController?.popViewController(animated: true)
     }
 }
@@ -155,14 +163,4 @@ extension MenuViewController: SentData {
     func didSelectImage(image: UIImage) {
         userImage.image = image
     }
-    
-//    func sendData(data: [String]) {
-//        userImage.image = UIImage(named: data[0])
-//        userName.text = data[1]
-//    }
-    
-//    func sendStruct(data: probaData) {
-//        userImage.image = data.image?.image
-//        userName.text = data.label?.text
-//    }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AvatarController: UIViewController {
+final class AvatarController: UIViewController {
     
     weak var delegate : SentData?
     

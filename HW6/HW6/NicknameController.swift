@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NicknameController: UIViewController {
+final class NicknameController: UIViewController {
     
     weak var delegate : SentData?
     

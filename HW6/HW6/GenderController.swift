@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GenderController: UIViewController {
+final class GenderController: UIViewController {
     
     weak var delegate : SentData?
     
@@ -89,7 +89,6 @@ class GenderController: UIViewController {
     @objc private func goToNextScreen(){
         guard let navVC = navigationController else {return}
         nicknameVC.delegate = delegate
-        //delegate?.didEnterGender(gender: "Myzhlo")
         navVC.pushViewController(nicknameVC, animated: true)
     }
 }

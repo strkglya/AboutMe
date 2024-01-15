@@ -7,13 +7,13 @@ protocol SentData: AnyObject {
     func didSelectImage(image: UIImage)
 }
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     private let menuVC = MenuViewController()
     
-    private let userImage = UIImageView()
+    let userImage = UIImageView()
     private let placeholder = UILabel()
-    private let userName = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+    let userName = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     private let customizeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     override func viewDidLoad() {
@@ -24,6 +24,13 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         userImage.layer.cornerRadius = userImage.frame.height / 2
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if userImage.image != nil {
+            placeholder.isHidden = true
+        } else {
+            placeholder.isHidden = false
+        }
     }
     
     private func setUpUI() {
@@ -103,7 +110,17 @@ class ViewController: UIViewController {
     @objc private func goToNextScreen(){
         guard let navVC = navigationController else {return}
         menuVC.delegate = self
+        menuVC.viewController = self
         navVC.pushViewController(menuVC, animated: true)
     }
 }
 
+extension ViewController: SentData {
+    func didEnterLabel(label: String) {
+        userName.text = label
+    }
+    
+    func didSelectImage(image: UIImage) {
+        userImage.image = image
+    }
+}
