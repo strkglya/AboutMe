@@ -1,0 +1,6 @@
+framework module Pods_HW6 {
+  umbrella header "Pods-HW6-umbrella.h"
+
+  export *
+  module * { export * }
+}
