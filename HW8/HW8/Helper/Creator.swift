@@ -9,7 +9,15 @@ import UIKit
 
 class Creator {
     
-    static func setUpButton(button: UIButton, target: Any, title: String, action: Selector, bgColor: UIColor = .purple, textColor: UIColor = .white, borderColor: UIColor = .white, borderWidth: CGFloat = 0, cornerRadius: CGFloat = 0){
+    static func setUpButton(button: UIButton, 
+                            target: Any,
+                            title: String,
+                            action: Selector,
+                            bgColor: UIColor = .purple,
+                            textColor: UIColor = .white,
+                            borderColor: UIColor = .white,
+                            borderWidth: CGFloat = 0,
+                            cornerRadius: CGFloat = 0){
         button.setTitle(title, for: .normal)
         button.backgroundColor = bgColor
         button.setTitleColor(textColor, for: .normal)
@@ -18,5 +26,25 @@ class Creator {
         button.layer.borderWidth = borderWidth
         button.layer.cornerRadius = cornerRadius
         button.addTarget(target, action: action, for: .touchUpInside)
+    }
+    
+    static func setUpStack(stack: UIStackView,
+                           axis: NSLayoutConstraint.Axis = .vertical,
+                           spacing: CGFloat = 10,
+                           distribution: UIStackView.Distribution = .fillEqually,
+                           subviews: [UIView]){
+        stack.axis = axis
+        stack.spacing = spacing
+        for subview in subviews {
+            stack.addArrangedSubview(subview)
+        }
+        stack.distribution = distribution
+    }
+    
+    static func setUpTextFields(textfield: UITextField, placeholder: String, keyboardType:  UIKeyboardType = .default){
+        textfield.placeholder = placeholder
+        textfield.keyboardType = keyboardType
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        textfield.borderStyle = .roundedRect
     }
 }

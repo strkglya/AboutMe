@@ -54,16 +54,11 @@ class NewStudentController: UIViewController {
     }
     
     private func setUpTextFields(){
+        Creator.setUpTextFields(textfield: nameTextField, placeholder: "Enter name")
         nameTextField.delegate = self
-        nameTextField.placeholder = "Enter name"
-        nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.borderStyle = .roundedRect
         
+        Creator.setUpTextFields(textfield: ageTextField, placeholder: "Enter age", keyboardType: .numberPad)
         ageTextField.delegate = self
-        ageTextField.placeholder = "Enter age"
-        ageTextField.keyboardType = .numberPad
-        ageTextField.translatesAutoresizingMaskIntoConstraints = false
-        ageTextField.borderStyle = .roundedRect
         
         view.addSubview(nameTextField)
         view.addSubview(ageTextField)
@@ -88,26 +83,13 @@ class NewStudentController: UIViewController {
         setUpTextFields()
         setUpButtons()
         
-        nameStack.axis = .vertical
-        nameStack.addArrangedSubview(nameLabel)
-        nameStack.addArrangedSubview(nameTextField)
-        nameStack.distribution = .fillEqually
-        
-        ageStack.axis = .vertical
-        ageStack.addArrangedSubview(ageLabel)
-        ageStack.addArrangedSubview(ageTextField)
-        ageStack.distribution = .fillEqually
-
-        buttonsStack.axis = .vertical
-        buttonsStack.addArrangedSubview(chooseTeacherButton)
-        buttonsStack.addArrangedSubview(saveButton)
-        buttonsStack.spacing = 20
-        buttonsStack.distribution = .fillEqually
+        Creator.setUpStack(stack: nameStack, subviews: [nameLabel,nameTextField])
+        Creator.setUpStack(stack: ageStack, subviews: [ageLabel, ageTextField])
+        Creator.setUpStack(stack: buttonsStack, subviews: [chooseTeacherButton,saveButton])
         
         view.addSubview(nameStack)
         view.addSubview(ageStack)
         view.addSubview(buttonsStack)
-    
     }
     
     private func setUpConstraints(){
