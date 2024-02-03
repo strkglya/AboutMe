@@ -1,0 +1,7 @@
+
+platform :ios, '17.0'
+use_frameworks!
+target 'HW7' do
+  
+pod 'SnapKit', '~> 5.6.0'
+end
