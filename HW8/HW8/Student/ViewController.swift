@@ -10,12 +10,18 @@ import SnapKit
 
 final class ViewController: UIViewController {
 
-    private var students = [Student(name: "hui", age: 12), Student(name: "biba", age: 14)]
+    private var students = [Student]()
     private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadInfo()
+        tableView.reloadData()
     }
     
     private func setUpUI(){
@@ -42,17 +48,16 @@ final class ViewController: UIViewController {
         }
     }
     
+    private func loadInfo(){
+        let request = Student.fetchRequest()
+        if let loadedStudents = try? CoreDataService.context.fetch(request) {
+            students = try! CoreDataService.context.fetch(request)
+        }
+    }
+    
     @objc func newStudent(){
         let newPersonVC = NewStudentController()
-        newPersonVC.delegate = self
         navigationController?.pushViewController(newPersonVC, animated: true)
-    }
-}
-
-extension ViewController: NewStudent {
-    func addStudent(student: Student) {
-        students.append(student)
-        tableView.reloadData()
     }
 }
 

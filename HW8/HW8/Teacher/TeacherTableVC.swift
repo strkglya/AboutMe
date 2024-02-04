@@ -10,16 +10,19 @@ import SnapKit
 
 final class TeacherTableVC: UIViewController {
     
-    private var teachers = [Teacher(name: "Ivan", age: 44)] {
-        didSet {
-            print(teachers)
-        }
-    }
+    private var teachers = [Teacher]()
+    
     private let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadInfo()
+        tableView.reloadData()
     }
     
     private func setUpUI(){
@@ -46,17 +49,16 @@ final class TeacherTableVC: UIViewController {
         }
     }
     
+    private func loadInfo(){
+        let request = Teacher.fetchRequest()
+        if let loadedTeachers = try? CoreDataService.context.fetch(request) {
+            teachers = loadedTeachers
+        }
+    }
+    
     @objc func newTeacher(){
         let newPersonVC = NewTeacherController()
-        newPersonVC.delegate = self
         navigationController?.pushViewController(newPersonVC, animated: true)
-    }
-}
-
-extension TeacherTableVC: NewTeacher {
-    func addTeacher(teacher: Teacher) {
-        teachers.append(teacher)
-        tableView.reloadData()
     }
 }
 

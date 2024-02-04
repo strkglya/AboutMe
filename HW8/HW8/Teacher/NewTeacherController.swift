@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 
 class NewTeacherController: UIViewController {
-    
-    weak var delegate: NewTeacher?
-    
+        
     private let nameLabel = UILabel()
     private let ageLabel = UILabel()
 
@@ -30,6 +28,7 @@ class NewTeacherController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         saveButton.isEnabled = false
     }
     
@@ -103,7 +102,13 @@ class NewTeacherController: UIViewController {
     @objc private func saveAction(){
         if let nameText = nameTextField.text, !nameText.isEmpty,
            let lastnameText = ageTextField.text, !lastnameText.isEmpty {
-            delegate?.addTeacher(teacher: Teacher(name: nameText, age: Int(lastnameText)!))
+            let context = CoreDataService.context
+            context.perform {
+                let newTeacher = Teacher(context: context)
+                newTeacher.name = nameText
+                newTeacher.age = Int16(lastnameText)!
+                CoreDataService.saveContext()
+            }
         }
         nameTextField.text = ""
         ageTextField.text = ""

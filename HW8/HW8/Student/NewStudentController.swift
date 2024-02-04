@@ -10,7 +10,7 @@ import SnapKit
 
 class NewStudentController: UIViewController {
     
-    weak var delegate: NewStudent?
+    //weak var delegate: NewStudent?
     
     private let nameLabel = UILabel()
     private let ageLabel = UILabel()
@@ -128,7 +128,14 @@ class NewStudentController: UIViewController {
     @objc private func saveAction(){
         if let nameText = nameTextField.text, !nameText.isEmpty,
            let lastnameText = ageTextField.text, !lastnameText.isEmpty {
-            delegate?.addStudent(student: Student(name: nameText, age: Int(lastnameText)!))
+            let context = CoreDataService.context
+            context.perform {
+                let newStudent = Student(context: context)
+                newStudent.name = nameText
+                newStudent.age = Int16(lastnameText)!
+                CoreDataService.saveContext()
+            }
+            //delegate?.addStudent(student: Student(name: nameText, age: Int(lastnameText)!))
         }
         
         nameTextField.text = ""
