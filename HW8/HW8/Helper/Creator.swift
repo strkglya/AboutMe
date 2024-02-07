@@ -47,4 +47,9 @@ class Creator {
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .roundedRect
     }
+    
+    static func setUpLabel(label: UILabel, text: String, size: CGFloat = 24, weight: UIFont.Weight = .regular){
+        label.text = text
+        label.font = .systemFont(ofSize: size, weight: weight)
+    }
 }

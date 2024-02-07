@@ -51,7 +51,7 @@ final class ViewController: UIViewController {
     private func loadInfo(){
         let request = Student.fetchRequest()
         if let loadedStudents = try? CoreDataService.context.fetch(request) {
-            students = try! CoreDataService.context.fetch(request)
+            students = loadedStudents
         }
     }
     
@@ -63,8 +63,14 @@ final class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let studentDetails = StudentDetails()
+        studentDetails.selectedStudent = students[indexPath.row]
+        navigationController?.pushViewController(studentDetails, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 55
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -2,6 +2,18 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/starayakeglua/Desktop/itAcademy/HW/AboutMeLocal/HW8/HW8/CoreData/Student+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/starayakeglua/Desktop/itAcademy/HW/AboutMeLocal/HW8/HW8/CoreData/Student+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/starayakeglua/Desktop/itAcademy/HW/AboutMeLocal/HW8/HW8/CoreData/Teacher+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/starayakeglua/Desktop/itAcademy/HW/AboutMeLocal/HW8/HW8/CoreData/Teacher+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:HW8.xcodeproj">
    </FileRef>
    <FileRef

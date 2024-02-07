@@ -8,13 +8,11 @@
 import UIKit
 import SnapKit
 
-class NewStudentController: UIViewController {
-    
-    //weak var delegate: NewStudent?
+class NewStudentController: UIViewController, TeacherSelectionDelegate {
     
     private let nameLabel = UILabel()
     private let ageLabel = UILabel()
-
+    
     private let nameTextField = UITextField()
     private let ageTextField = UITextField()
     
@@ -25,6 +23,8 @@ class NewStudentController: UIViewController {
     private let ageStack = UIStackView()
     private let buttonsStack = UIStackView()
     
+    var chosenTeacher: Teacher?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -33,6 +33,10 @@ class NewStudentController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         saveButton.isEnabled = false
+    }
+    
+    func didSelectTeacher(_ teacher: Teacher) {
+        chosenTeacher = teacher
     }
     
     private func setUpUI(){
@@ -48,7 +52,7 @@ class NewStudentController: UIViewController {
         ageLabel.text = "Age"
         ageLabel.font = .systemFont(ofSize: 24)
         ageLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        
         view.addSubview(nameLabel)
         view.addSubview(ageLabel)
     }
@@ -74,7 +78,7 @@ class NewStudentController: UIViewController {
                             borderColor: .purple,
                             borderWidth: 2)
         view.addSubview(chooseTeacherButton)
-        Creator.setUpButton(button: saveButton, target: self, title: "Save", action: #selector(saveAction))
+        Creator.setUpButton(button: saveButton, target: self, title: "Save", action: #selector(self.saveAction))
         view.addSubview(saveButton)
     }
     
@@ -110,32 +114,35 @@ class NewStudentController: UIViewController {
             make.left.equalTo(20)
             make.right.equalTo(-20)
         }
-
+        
         chooseTeacherButton.snp.makeConstraints { make in
             make.height.equalTo(40)
         }
-
+        
         saveButton.snp.makeConstraints { make in
             make.height.equalTo(40)
         }
     }
     
     @objc private func chooseTeacher(){
-        let teacherVC = TeacherTableVC()
-        navigationController?.pushViewController(teacherVC, animated: true)
+        let teacherTableVC = TeacherTableVC()
+        teacherTableVC.isFromInitialScreen = false
+        teacherTableVC.delegate = self
+        navigationController?.pushViewController(teacherTableVC, animated: true)
     }
     
     @objc private func saveAction(){
         if let nameText = nameTextField.text, !nameText.isEmpty,
-           let lastnameText = ageTextField.text, !lastnameText.isEmpty {
+           let lastnameText = ageTextField.text, !lastnameText.isEmpty, chosenTeacher != nil {
             let context = CoreDataService.context
             context.perform {
                 let newStudent = Student(context: context)
                 newStudent.name = nameText
                 newStudent.age = Int16(lastnameText)!
+                newStudent.teacher = self.chosenTeacher
                 CoreDataService.saveContext()
             }
-            //delegate?.addStudent(student: Student(name: nameText, age: Int(lastnameText)!))
+            saveButton.setTitle("Choosen teacher:  \(String(describing: chosenTeacher?.name))", for: .normal)
         }
         
         nameTextField.text = ""
@@ -147,7 +154,7 @@ class NewStudentController: UIViewController {
 extension NewStudentController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if let nameText = nameTextField.text, let lastnameText = ageTextField.text {
-            saveButton.isEnabled = !nameText.isEmpty && !lastnameText.isEmpty
+            saveButton.isEnabled = !nameText.isEmpty && !lastnameText.isEmpty && chosenTeacher != nil
         }
     }
 }

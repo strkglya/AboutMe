@@ -117,9 +117,11 @@ class NewTeacherController: UIViewController {
 }
 
 extension NewTeacherController: UITextFieldDelegate {
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if let nameText = nameTextField.text, let lastnameText = ageTextField.text {
             saveButton.isEnabled = !nameText.isEmpty && !lastnameText.isEmpty
         }
     }
+    
 }

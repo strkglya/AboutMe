@@ -2,7 +2,7 @@
 //  Student+CoreDataProperties.swift
 //  
 //
-//  Created by Александра Среднева on 3.02.24.
+//  Created by Александра Среднева on 4.02.24.
 //
 //
 

@@ -10,9 +10,13 @@ import SnapKit
 
 final class TeacherTableVC: UIViewController {
     
-    private var teachers = [Teacher]()
+    weak var delegate: TeacherSelectionDelegate?
+    
+    var teachers = [Teacher]()
     
     private let tableView = UITableView()
+    
+    var isFromInitialScreen = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +67,21 @@ final class TeacherTableVC: UIViewController {
 }
 
 extension TeacherTableVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isFromInitialScreen {
+            let teacherDetails = TeacherDetails()
+            teacherDetails.selectedTeacher = teachers[indexPath.row]
+            navigationController?.pushViewController(teacherDetails, animated: true)
+        } else {
+            if let delegate = delegate {
+                delegate.didSelectTeacher(teachers[indexPath.row])
+            }
+            navigationController?.popViewController(animated: true)
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 55
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,6 +96,3 @@ extension TeacherTableVC: UITableViewDelegate, UITableViewDataSource {
         return cell ?? UITableViewCell()
     }
 }
-
-
-

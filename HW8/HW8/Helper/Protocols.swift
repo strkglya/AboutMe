@@ -12,6 +12,10 @@ protocol Displayable {
     var age: Int16 {get set}
 }
 
+protocol TeacherSelectionDelegate: AnyObject {
+    func didSelectTeacher(_ teacher: Teacher)
+}
+
 //protocol NewStudent: AnyObject {
 //    func addStudent(student: Student)
 //}

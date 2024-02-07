@@ -10,6 +10,10 @@ import CoreData
 // MARK: - Core Data stack
 public class CoreDataService {
     
+    static let shared = CoreDataService()
+    
+    private init(){}
+    
     static var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
@@ -23,9 +27,7 @@ public class CoreDataService {
         })
         return container
     }()
-    
-    // MARK: - Core Data Saving support
-    
+        
     static func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -36,5 +38,5 @@ public class CoreDataService {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-    }    
+    }
 }
