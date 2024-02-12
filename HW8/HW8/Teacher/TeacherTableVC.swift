@@ -12,7 +12,7 @@ final class TeacherTableVC: UIViewController {
     
     weak var delegate: TeacherSelectionDelegate?
     
-    var teachers = [Teacher]()
+    var teachers = [TeacherModel]()
     
     private let tableView = UITableView()
     
@@ -25,7 +25,7 @@ final class TeacherTableVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadInfo()
+        teachers = CoreDataService.loadTeacher()
         tableView.reloadData()
     }
     
@@ -50,13 +50,6 @@ final class TeacherTableVC: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(0)
-        }
-    }
-    
-    private func loadInfo(){
-        let request = Teacher.fetchRequest()
-        if let loadedTeachers = try? CoreDataService.context.fetch(request) {
-            teachers = loadedTeachers
         }
     }
     

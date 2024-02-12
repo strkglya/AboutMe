@@ -102,13 +102,7 @@ class NewTeacherController: UIViewController {
     @objc private func saveAction(){
         if let nameText = nameTextField.text, !nameText.isEmpty,
            let lastnameText = ageTextField.text, !lastnameText.isEmpty {
-            let context = CoreDataService.context
-            context.perform {
-                let newTeacher = Teacher(context: context)
-                newTeacher.name = nameText
-                newTeacher.age = Int16(lastnameText)!
-                CoreDataService.saveContext()
-            }
+            CoreDataService.saveTeacher(teacherModel: TeacherModel(name: nameText, age: Int(lastnameText)!, students: []))
         }
         nameTextField.text = ""
         ageTextField.text = ""

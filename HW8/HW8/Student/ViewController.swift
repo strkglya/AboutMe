@@ -10,7 +10,7 @@ import SnapKit
 
 final class ViewController: UIViewController {
 
-    private var students = [Student]()
+    private var students = [StudentModel]()
     private let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ final class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadInfo()
+        students = CoreDataService.loadStudent()
         tableView.reloadData()
     }
     
@@ -45,13 +45,6 @@ final class ViewController: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(0)
-        }
-    }
-    
-    private func loadInfo(){
-        let request = Student.fetchRequest()
-        if let loadedStudents = try? CoreDataService.context.fetch(request) {
-            students = loadedStudents
         }
     }
     

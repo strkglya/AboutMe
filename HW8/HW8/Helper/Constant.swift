@@ -11,5 +11,4 @@ class Constant {
     
     static let teacherCellIdentifier = "TeacherCell"
     static let studentCellIdentifier = "StudentCell"
-    
 }

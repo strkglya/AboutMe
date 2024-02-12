@@ -13,8 +13,8 @@ class TeacherDetails: UIViewController {
     private var ageLabel = UILabel()
     private var studentsTable = UITableView()
     
-    var selectedTeacher: Teacher?
-    private var loadedStudents = [Student]()
+    var selectedTeacher: TeacherModel?
+    private var loadedStudents = [StudentModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +23,9 @@ class TeacherDetails: UIViewController {
     }
     
     private func loadStudents(){
-        if let teacher = selectedTeacher, let teacherStudents = teacher.student {
-            loadedStudents = teacherStudents.allObjects as? [Student] ?? []
-        }
+        guard let teacherStudents = selectedTeacher?.students else {return}
+        loadedStudents = teacherStudents
     }
-
     
     private func setUpUI(){
         view.backgroundColor = .white

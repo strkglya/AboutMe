@@ -8,18 +8,11 @@
 import Foundation
 
 protocol Displayable {
-    var name: String? { get set }
-    var age: Int16 {get set}
+    var name: String { get set }
+    var age: Int {get set}
 }
 
 protocol TeacherSelectionDelegate: AnyObject {
-    func didSelectTeacher(_ teacher: Teacher)
+    func didSelectTeacher(_ teacher: TeacherModel)
 }
 
-//protocol NewStudent: AnyObject {
-//    func addStudent(student: Student)
-//}
-//
-//protocol NewTeacher: AnyObject {
-//    func addTeacher(teacher: Teacher)
-//}

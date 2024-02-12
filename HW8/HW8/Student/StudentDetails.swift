@@ -14,7 +14,7 @@ class StudentDetails: UIViewController {
     private var ageLabel = UILabel()
     private var teacherLabel = UILabel()
     
-    var selectedStudent: Student?
+    var selectedStudent: StudentModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class StudentDetails: UIViewController {
     
     private func setUpLabels(){
         guard let studentTeacher = selectedStudent?.teacher else {return}
-        guard let teacherName = studentTeacher.name else {return}
+        let teacherName = studentTeacher.name 
 
         Creator.setUpLabel(label: nameLabel, text: "Name: \(selectedStudent?.name ?? "error")")
         Creator.setUpLabel(label: ageLabel, text: "Age: \(selectedStudent?.age ?? 0)")

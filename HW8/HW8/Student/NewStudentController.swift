@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class NewStudentController: UIViewController, TeacherSelectionDelegate {
-    
+
     private let nameLabel = UILabel()
     private let ageLabel = UILabel()
     
@@ -23,7 +23,7 @@ class NewStudentController: UIViewController, TeacherSelectionDelegate {
     private let ageStack = UIStackView()
     private let buttonsStack = UIStackView()
     
-    var chosenTeacher: Teacher?
+    var chosenTeacher: TeacherModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class NewStudentController: UIViewController, TeacherSelectionDelegate {
         saveButton.isEnabled = false
     }
     
-    func didSelectTeacher(_ teacher: Teacher) {
+    func didSelectTeacher(_ teacher: TeacherModel) {
         chosenTeacher = teacher
     }
     
@@ -133,18 +133,12 @@ class NewStudentController: UIViewController, TeacherSelectionDelegate {
     
     @objc private func saveAction(){
         if let nameText = nameTextField.text, !nameText.isEmpty,
-           let lastnameText = ageTextField.text, !lastnameText.isEmpty, chosenTeacher != nil {
-            let context = CoreDataService.context
-            context.perform {
-                let newStudent = Student(context: context)
-                newStudent.name = nameText
-                newStudent.age = Int16(lastnameText)!
-                newStudent.teacher = self.chosenTeacher
-                CoreDataService.saveContext()
-            }
-            saveButton.setTitle("Choosen teacher:  \(String(describing: chosenTeacher?.name))", for: .normal)
+           let ageText = ageTextField.text, !ageText.isEmpty, let chosenTeacher = chosenTeacher {
+            let newStudent = StudentModel(name: nameText, age: Int(ageText)!, teacher: chosenTeacher)
+            CoreDataService.saveStudent(studentModel: newStudent)
+            saveButton.setTitle("Choosen teacher:  \(String(describing: chosenTeacher.name))", for: .normal)
         }
-        
+
         nameTextField.text = ""
         ageTextField.text = ""
         navigationController?.popViewController(animated: true)
