@@ -1,0 +1,95 @@
+//
+//  TeacherTableVC.swift
+//  HW8
+//
+//  Created by Александра Среднева on 3.02.24.
+//
+
+import UIKit
+import SnapKit
+
+final class TeacherTableVC: UIViewController {
+    
+    weak var delegate: TeacherSelectionDelegate?
+    
+    var teachers = [TeacherModel]()
+    
+    private let tableView = UITableView()
+    
+    var isFromInitialScreen = true
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        teachers = CoreDataService.loadTeacher()
+        tableView.reloadData()
+    }
+    
+    private func setUpUI(){
+        setUpNavBar()
+        setUpTableView()
+    }
+    
+    private func setUpNavBar(){
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newTeacher))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    private func setUpTableView(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(BasicCell.self, forCellReuseIdentifier: Constant.teacherCellIdentifier)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalTo(0)
+        }
+    }
+    
+    @objc func newTeacher(){
+        let newPersonVC = NewTeacherController()
+        navigationController?.pushViewController(newPersonVC, animated: true)
+    }
+}
+
+extension TeacherTableVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let teacherAtRow = teachers[indexPath.row]
+
+        if isFromInitialScreen {
+            let teacherDetails = TeacherDetails()
+            let teacherAtRow = teachers[indexPath.row]
+            teacherDetails.selectedTeacher = teacherAtRow
+            navigationController?.pushViewController(teacherDetails, animated: true)
+        } else {
+            if let delegate = delegate {
+                delegate.didSelectTeacher(teacherAtRow)
+            }
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return teachers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constant.teacherCellIdentifier, for: indexPath) as? BasicCell
+        cell?.separatorInset = UIEdgeInsets.zero
+        cell?.preservesSuperviewLayoutMargins = false
+        cell?.configure(object: teachers[indexPath.row])
+        return cell ?? UITableViewCell()
+    }
+}
