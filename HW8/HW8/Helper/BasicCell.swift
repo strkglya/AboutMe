@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BasicCell: UITableViewCell {
+final class BasicCell: UITableViewCell {
     
     private let nameLabel = UILabel()
     private let ageLabel = UILabel()

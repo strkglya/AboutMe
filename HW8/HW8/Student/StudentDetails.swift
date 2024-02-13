@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class StudentDetails: UIViewController {
+final class StudentDetails: UIViewController {
 
     private var nameLabel = UILabel()
     private var ageLabel = UILabel()
@@ -31,9 +31,9 @@ class StudentDetails: UIViewController {
         guard let studentTeacher = selectedStudent?.teacher else {return}
         let teacherName = studentTeacher.name 
 
-        Creator.setUpLabel(label: nameLabel, text: "Name: \(selectedStudent?.name ?? "error")")
-        Creator.setUpLabel(label: ageLabel, text: "Age: \(selectedStudent?.age ?? 0)")
-        Creator.setUpLabel(label: teacherLabel, text: "Teacher: \(teacherName)")
+        Creator.setUpLabel(label: nameLabel, basicText: "Name: ", boldText: selectedStudent?.name ?? "nil")
+        Creator.setUpLabel(label: ageLabel, basicText: "Age: ", boldText: String(selectedStudent?.age ?? 0))
+        Creator.setUpLabel(label: teacherLabel, basicText: "Teacher: ", boldText: teacherName)
         
         view.addSubview(nameLabel)
         view.addSubview(ageLabel)

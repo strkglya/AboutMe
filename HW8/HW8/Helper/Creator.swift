@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Creator {
+final class Creator {
     
     static func setUpButton(button: UIButton, 
                             target: Any,
@@ -48,8 +48,19 @@ class Creator {
         textfield.borderStyle = .roundedRect
     }
     
-    static func setUpLabel(label: UILabel, text: String, size: CGFloat = 24, weight: UIFont.Weight = .regular){
-        label.text = text
-        label.font = .systemFont(ofSize: size, weight: weight)
-    }
+    static func setUpLabel(label: UILabel,
+                            basicText: String,
+                            boldText: String,
+                            size: CGFloat = 24,
+                            weight: UIFont.Weight = .regular) {
+         let basicAttributedString = NSAttributedString(string: basicText, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: size, weight: weight)])
+         
+         let boldAttributedString = NSAttributedString(string: boldText, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: size)])
+         
+         let attributedString = NSMutableAttributedString()
+         attributedString.append(basicAttributedString)
+         attributedString.append(boldAttributedString)
+         
+         label.attributedText = attributedString
+     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class NewStudentController: UIViewController, TeacherSelectionDelegate {
+final class NewStudentController: UIViewController, TeacherSelectionDelegate {
 
     private let nameLabel = UILabel()
     private let ageLabel = UILabel()
@@ -37,6 +37,8 @@ class NewStudentController: UIViewController, TeacherSelectionDelegate {
     
     func didSelectTeacher(_ teacher: TeacherModel) {
         chosenTeacher = teacher
+        guard let teacherName = chosenTeacher?.name else {return}
+        chooseTeacherButton.setTitle("Chosen teacher: \(teacherName)", for: .normal)
     }
     
     private func setUpUI(){
@@ -147,8 +149,8 @@ class NewStudentController: UIViewController, TeacherSelectionDelegate {
 
 extension NewStudentController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if let nameText = nameTextField.text, let lastnameText = ageTextField.text {
-            saveButton.isEnabled = !nameText.isEmpty && !lastnameText.isEmpty && chosenTeacher != nil
+        if let nameText = nameTextField.text, let ageText = ageTextField.text {
+            saveButton.isEnabled = !nameText.isEmpty && !ageText.isEmpty && chosenTeacher != nil
         }
     }
 }

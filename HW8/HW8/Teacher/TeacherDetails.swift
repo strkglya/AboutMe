@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeacherDetails: UIViewController {
+final class TeacherDetails: UIViewController {
     
     private var nameLabel = UILabel()
     private var ageLabel = UILabel()
@@ -19,6 +19,10 @@ class TeacherDetails: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        doLoad()
+    }
+    
+    private func doLoad(){
         loadStudents()
     }
     
@@ -35,9 +39,8 @@ class TeacherDetails: UIViewController {
     }
     
     private func setUpLabels(){
-        
-        Creator.setUpLabel(label: nameLabel, text: "Name: \(selectedTeacher?.name ?? "error")")
-        Creator.setUpLabel(label: ageLabel, text: "Age: \(selectedTeacher?.age ?? 0)")
+        Creator.setUpLabel(label: nameLabel, basicText: "Name: ", boldText: selectedTeacher?.name ?? "nil")
+        Creator.setUpLabel(label: ageLabel, basicText: "Age: ", boldText: String(selectedTeacher?.age ?? 0))
         
         view.addSubview(nameLabel)
         view.addSubview(ageLabel)

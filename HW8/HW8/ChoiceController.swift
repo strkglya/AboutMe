@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChoiceController: UIViewController {
+final class ChoiceController: UIViewController {
     
     private let studentButton = UIButton()
     private let teacherButton = UIButton()

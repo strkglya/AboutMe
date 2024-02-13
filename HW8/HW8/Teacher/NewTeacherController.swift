@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class NewTeacherController: UIViewController {
+final class NewTeacherController: UIViewController {
         
     private let nameLabel = UILabel()
     private let ageLabel = UILabel()
@@ -101,8 +101,8 @@ class NewTeacherController: UIViewController {
     
     @objc private func saveAction(){
         if let nameText = nameTextField.text, !nameText.isEmpty,
-           let lastnameText = ageTextField.text, !lastnameText.isEmpty {
-            CoreDataService.saveTeacher(teacherModel: TeacherModel(name: nameText, age: Int(lastnameText)!, students: []))
+           let ageText = ageTextField.text, !ageText.isEmpty {
+            CoreDataService.saveTeacher(teacherModel: TeacherModel(name: nameText, age: Int(ageText)!, students: []))
         }
         nameTextField.text = ""
         ageTextField.text = ""
@@ -113,8 +113,8 @@ class NewTeacherController: UIViewController {
 extension NewTeacherController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        if let nameText = nameTextField.text, let lastnameText = ageTextField.text {
-            saveButton.isEnabled = !nameText.isEmpty && !lastnameText.isEmpty
+        if let nameText = nameTextField.text, let ageText = ageTextField.text {
+            saveButton.isEnabled = !nameText.isEmpty && !ageText.isEmpty
         }
     }
     

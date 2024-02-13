@@ -1,9 +1,10 @@
 
+
 import CoreData
 
 final public class CoreDataService {
     
-    static let shared = CoreDataService()
+    let shared = CoreDataService()
     
     private init() {}
     
@@ -63,21 +64,12 @@ final public class CoreDataService {
         }
     }
     
-    
     static func saveTeacher(teacherModel: TeacherModel) {
         let context = CoreDataService.context
         let teacher = Teacher(context: context)
         teacher.name = teacherModel.name
         teacher.age = Int16(teacherModel.age)
-        //
-        //        for studentModel in teacherModel.students {
-        //            let student = Student(context: context)
-        //            student.name = studentModel.name
-        //            student.age = Int16(studentModel.age)
-        //            student.teacher = teacher
-        //            teacher.addToStudent(student)
-        //        }
-        //
+
         CoreDataService.saveContext()
     }
     
@@ -114,7 +106,6 @@ final public class CoreDataService {
         let teacher = Teacher(context: context)
         teacher.name = teacherModel.name
         teacher.age = Int16(teacherModel.age)
-        let students = teacherModel.students
         for model in teacherModel.students{
             let studentModel = studentEntity(from: model)
             teacher.addToStudent(studentModel)
@@ -143,7 +134,6 @@ final public class CoreDataService {
         let students = studentsSet.map { student in
             return StudentModel(name: student.name ?? "", age: Int(student.age), teacher: TeacherModel(name: teacher.name ?? "", age: Int(teacher.age), students: []))
         }
-        
         return TeacherModel(name: teacher.name ?? "", age: Int(teacher.age), students: students)
     }
     

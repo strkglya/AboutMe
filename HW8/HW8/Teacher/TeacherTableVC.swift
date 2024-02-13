@@ -61,13 +61,17 @@ final class TeacherTableVC: UIViewController {
 
 extension TeacherTableVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let teacherAtRow = teachers[indexPath.row]
+
         if isFromInitialScreen {
             let teacherDetails = TeacherDetails()
-            teacherDetails.selectedTeacher = teachers[indexPath.row]
+            let teacherAtRow = teachers[indexPath.row]
+            teacherDetails.selectedTeacher = teacherAtRow
             navigationController?.pushViewController(teacherDetails, animated: true)
         } else {
             if let delegate = delegate {
-                delegate.didSelectTeacher(teachers[indexPath.row])
+                delegate.didSelectTeacher(teacherAtRow)
             }
             navigationController?.popViewController(animated: true)
         }

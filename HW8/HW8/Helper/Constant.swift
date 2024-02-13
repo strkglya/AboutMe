@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Constant {
+final class Constant {
     
     static let teacherCellIdentifier = "TeacherCell"
     static let studentCellIdentifier = "StudentCell"
